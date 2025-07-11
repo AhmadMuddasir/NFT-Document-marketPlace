@@ -1,0 +1,64 @@
+/* Base Styles (Mobile-First) */
+
+.alert {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  left: 16px; /* Full width on mobile */
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #e17f1c 0%, #ee2543 100%);
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Better spacing on small screens */
+  gap: 8px;
+  cursor: pointer;
+  z-index: 1000;
+  animation: slideIn 0.3s ease-out;
+  font-size: 14px;
+  max-width: calc(100% - 32px); /* Prevents edge touching */
+}
+
+/* Close Button */
+.alert span {
+  font-size: 20px; /* Smaller on mobile */
+  line-height: 1;
+  transition: transform 0.2s;
+  flex-shrink: 0; /* Prevents squeezing */
+}
+
+/* Desktop Styles (min-width: 768px) */
+@media (min-width: 768px) {
+  .alert {
+    left: auto; /* Reset to default */
+    width: auto;
+    max-width: 350px; /* Limits width on desktop */
+    padding: 16px 24px;
+  }
+
+  .alert span {
+    font-size: 24px; /* Larger on desktop */
+  }
+}
+
+/* Animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Hover Effects (Desktop only) */
+@media (hover: hover) {
+  .alert:hover span {
+    transform: scale(1.2);
+  }            
+}                   

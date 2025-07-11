@@ -1,0 +1,106 @@
+.material_checkbox {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+     font-size: 1rem;
+     color: #e1e1e1;
+     cursor: pointer;
+     user-select: none;
+     padding: 8px 12px;
+     border-radius: 6px;
+     transition: background 0.3s ease;
+   }
+   
+   .material_checkbox:hover {
+     background: rgba(248, 155, 41, 0.1); /* Orange tint */
+   }
+   
+   .material_checkbox input[type="checkbox"] {
+     position: absolute;
+     opacity: 0;
+     width: 0;
+     height: 0;
+   }
+   
+   .checkmark {
+     position: relative;
+     width: 20px;
+     height: 20px;
+     background: #2d2d2d; /* Dark background */
+     border: 2px solid #f89b29; /* Orange border */
+     border-radius: 4px;
+     transition: background 0.3s ease, border-color 0.3s ease;
+   }
+   
+   .material_checkbox input[type="checkbox"]:checked + .checkmark {
+     background: linear-gradient(45deg, #f89b29, #e61538); /* Orange-pink gradient */
+     border-color: #e61538; /* Pink border */
+   }
+   
+   .material_checkbox input[type="checkbox"]:checked + .checkmark::after {
+     content: "";
+     position: absolute;
+     left: 6px;
+     top: 2px;
+     width: 6px;
+     height: 12px;
+     border: solid #e1e1e1;
+     border-width: 0 2px 2px 0;
+     transform: rotate(45deg);
+   }
+   
+   .material_checkbox input[type="checkbox"]:focus + .checkmark {
+     box-shadow: 0 0 0 3px rgba(248, 155, 41, 0.3); /* Orange focus ring */
+   }
+   
+   .material_checkbox input[type="checkbox"]:disabled + .checkmark {
+     background: #4a4a4a;
+     border-color: #4a4a4a;
+     cursor: not-allowed;
+   }
+   
+   .material_checkbox input[type="checkbox"]:disabled ~ span,
+   .material_checkbox input[type="checkbox"]:disabled {
+     color: #6a6a6a;
+     cursor: not-allowed;
+   }
+   
+   /* Responsive adjustments */
+   @media (max-width: 768px) {
+     .material_checkbox {
+       font-size: 0.95rem;
+       padding: 6px 10px;
+     }
+   
+     .checkmark {
+       width: 18px;
+       height: 18px;
+     }
+   
+     .material_checkbox input[type="checkbox"]:checked + .checkmark::after {
+       left: 5px;
+       top: 2px;
+       width: 5px;
+       height: 10px;
+     }
+   }
+   
+   @media (max-width: 480px) {
+     .material_checkbox {
+       font-size: 0.9rem;
+       padding: 5px 8px;
+     }
+   
+     .checkmark {
+       width: 16px;
+       height: 16px;
+     }
+   
+     .material_checkbox input[type="checkbox"]:checked + .checkmark::after {
+       left: 4px;
+       top: 1px;
+       width: 4px;
+       height: 8px;
+     }
+   }

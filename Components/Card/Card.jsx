@@ -1,0 +1,39 @@
+import React from 'react'
+import Image from "next/image";
+import style from "./Card.module.css";
+import images from "../Image/client/index"
+
+const Card = ({image,index}) => {
+  const date = new Date(image.createdAt * 1000).toString();
+  return (
+    <div className={style.card}>
+      <div className={style.content}>
+        <a href={`/image/${image.imageId}`}>
+        <img
+        className='style.image'
+        src={image.image} 
+        alt="image" />
+        </a>
+        <span className={style.para}>
+          <Image
+          className='avatar_img'
+          src={images[`client${index+1}`]}
+          width={40}
+          height={40}
+          alt='img'
+          />
+          <small
+          className={style.para_small}
+          onClick={()=>{
+            navigator.clipboard.writeText(image.owner)
+          }}
+          >
+
+          </small>
+        </span>
+      </div>
+    </div>
+  )
+}
+
+export default Card

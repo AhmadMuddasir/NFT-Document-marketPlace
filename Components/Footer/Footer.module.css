@@ -1,0 +1,214 @@
+.footer {
+     background: linear-gradient(135deg, #1e1e1e, #2d2d2d);
+     padding: 40px 20px;
+     color: #e1e1e1;
+     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-between;
+     gap: 30px;
+     border-top: 1px solid #f89b29;
+   }
+   
+   .footer_box {
+     flex: 1;
+     min-width: 250px;
+     max-width: 350px;
+   }
+   
+   .footer_box_social {
+     display: flex;
+     flex-direction: column;
+     gap: 15px;
+   }
+   
+   .footer_box_social_logo {
+     width: 70.4px; /* Matches your logo size */
+     height: 70.4px;
+     transition: transform 0.3s ease;
+   }
+   
+   .footer_box_social_logo:hover {
+     transform: scale(1.1);
+   }
+   
+   .footer_box_social_info {
+     font-size: 1rem;
+     line-height: 1.5;
+     color: #b0b0b0;
+   }
+   
+   .footer_social {
+     display: flex;
+     gap: 15px;
+     margin-top: 10px;
+   }
+   
+   .footer_social a {
+     color: #f89b29;
+     font-size: 1.8rem;
+     transition: color 0.3s ease, transform 0.3s ease;
+   }
+   
+   .footer_social a:hover {
+     color: #e61538;
+     transform: translateY(-3px);
+   }
+   
+   .footer_box_help {
+     flex: 1;
+     min-width: 200px;
+     max-width: 250px;
+   }
+   
+   .footer_box_help h3 {
+     color: #f89b29;
+     font-size: 1.5rem;
+     margin-bottom: 15px;
+     text-transform: uppercase;
+   }
+   
+   .menu {
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+   }
+   
+   .menu p {
+     font-size: 1rem;
+     color: #e1e1e1;
+     cursor: pointer;
+     transition: color 0.3s ease;
+   }
+   
+   .menu p:hover {
+     color: #e61538;
+   }
+   
+   .suscribe {
+     flex: 1;
+     min-width: 250px;
+     max-width: 350px;
+   }
+   
+   .suscribe h3 {
+     color: #f89b29;
+     font-size: 1.5rem;
+     margin-bottom: 15px;
+     text-transform: uppercase;
+   }
+   
+   .suscribe_box {
+     display: flex;
+     align-items: center;
+     background: #2d2d2d;
+     border-radius: 8px;
+     overflow: hidden;
+     border: 1px solid #f89b29;
+     transition: box-shadow 0.3s ease;
+   }
+   
+   .suscribe_box:hover {
+     box-shadow: 0 0 10px rgba(248, 155, 41, 0.3);
+   }
+   
+   .suscribe_box input {
+     flex: 1;
+     padding: 12px;
+     background: transparent;
+     border: none;
+     color: #e1e1e1;
+     font-size: 1rem;
+     outline: none;
+   }
+   
+   .suscribe_box input::placeholder {
+     color: #b0b0b0;
+   }
+   
+   .subscribe_box_send {
+     font-size: 1.5rem;
+     color: #f89b29;
+     padding: 12px;
+     cursor: pointer;
+     transition: color 0.3s ease, transform 0.3s ease;
+   }
+   
+   .subscribe_box_send:hover {
+     color: #e61538;
+     transform: scale(1.1);
+   }
+   
+   .suscribe_box_info {
+     margin-top: 15px;
+     font-size: 1rem;
+     line-height: 1.5;
+     color: #b0b0b0;
+   }
+   
+   /* Responsive adjustments */
+   @media (max-width: 768px) {
+     .footer {
+       flex-direction: column;
+       align-items: center;
+       text-align: center;
+     }
+   
+     .footer_box,
+     .footer_box_help,
+     .suscribe {
+       max-width: 100%;
+     }
+   
+     .footer_box_social {
+       align-items: center;
+     }
+   
+     .footer_social {
+       justify-content: center;
+     }
+   
+     .menu {
+       align-items: center;
+     }
+   
+     .suscribe_box {
+       max-width: 300px;
+       margin: 0 auto;
+     }
+   }
+   
+   @media (max-width: 480px) {
+     .footer {
+       padding: 20px 10px;
+     }
+   
+     .footer_box_social_logo {
+       width: 50px;
+       height: 50px;
+     }
+   
+     .footer_box_social_info,
+     .suscribe_box_info {
+       font-size: 0.9rem;
+     }
+   
+     .footer_box_help h3,
+     .suscribe h3 {
+       font-size: 1.2rem;
+     }
+   
+     .menu p {
+       font-size: 0.9rem;
+     }
+   
+     .suscribe_box input {
+       padding: 10px;
+       font-size: 0.9rem;
+     }
+   
+     .subscribe_box_send {
+       font-size: 1.2rem;
+       padding: 10px;
+     }
+   }

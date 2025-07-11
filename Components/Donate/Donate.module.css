@@ -1,0 +1,168 @@
+.card {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     min-height: 80vh;
+     padding: 20px;
+   }
+   
+   .card2 {
+     background: rgba(255, 255, 255, 0.1);
+     backdrop-filter: blur(12px);
+     border-radius: 15px;
+     padding: 30px;
+     width: 100%;
+     max-width: 500px;
+     box-shadow: 5px 5px 15px   rgba(255, 255, 255, 0.15);
+     border: 1px solid rgba(255, 255, 255, 0.2);
+   }
+   
+   .form {
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+   }
+   
+   .heading {
+     font-size: 24px;
+     font-weight: 600;
+     color: #FFFFFF;
+     text-align: center;
+     margin-bottom: 10px;
+     text-transform: uppercase;
+     letter-spacing: 1px;
+   }
+   
+   .field {
+     display: flex;
+     align-items: center;
+     background: rgba(255, 255, 255, 0.15);
+     border-radius: 8px;
+     padding: 10px;
+     border: 1px solid rgba(255, 255, 255, 0.3);
+     transition: border 0.3s ease;
+   }
+   
+   .field:focus-within {
+     border-color: #FF6F61;
+   }
+   
+   .input_icon {
+     width: 24px;
+     height: 24px;
+     fill: #FF6F61;
+     margin-right: 10px;
+   }
+   
+   .input_field {
+     background: transparent;
+     border: none;
+     outline: none;
+     color: #FFFFFF;
+     font-size: 16px;
+     width: 100%;
+     padding: 8px;
+   }
+   
+   .input_field::placeholder {
+     color: rgba(255, 255, 255, 0.6);
+   }
+   
+   .btn {
+     display: flex;
+     justify-content: space-between;
+     gap: 10px;
+     margin-top: 20px;
+   }
+   
+   .button1 {
+     flex: 1;
+     padding: 12px;
+     background: #FF6F61;
+     color: #FFFFFF;
+     border: none;
+     border-radius: 8px;
+     font-size: 16px;
+     cursor: pointer;
+     transition: background 0.3s ease, transform 0.2s ease;
+   }
+   
+   .button1:hover {
+     background: #E55A50;
+     transform: translateY(-2px);
+   }
+   
+   .button2 {
+     flex: 1;
+     padding: 12px;
+     background: #FFA500;
+     color: #FFFFFF;
+     border: none;
+     border-radius: 8px;
+     font-size: 16px;
+     cursor: pointer;
+     transition: background 0.3s ease, transform 0.2s ease;
+   }
+   
+   .button2:hover {
+     background: #E69500;
+     transform: translateY(-2px);
+   }
+   
+   .button3 {
+     width: 100%;
+     padding: 14px;
+     background: linear-gradient(90deg, #FF6F61 0%, #FFA500 100%);
+     color: #FFFFFF;
+     border: none;
+     border-radius: 8px;
+     font-size: 18px;
+     font-weight: 500;
+     cursor: pointer;
+     margin-top: 20px;
+     transition: background 0.3s ease, transform 0.2s ease;
+   }
+   
+   .button3:hover {
+     background: linear-gradient(90deg, #E55A50 0%, #E69500 100%);
+     transform: translateY(-2px);
+   }
+   
+   .error {
+     color: #FFFFFF;
+     background: rgba(255, 107, 97, 0.8);
+     font-size: 14px;
+     margin-top: 5px;
+     text-align: center;
+     padding: 8px;
+     border-radius: 5px;
+   }
+   
+   @media (max-width: 480px) {
+     .card2 {
+       padding: 20px;
+       max-width: 90%;
+     }
+   
+     .heading {
+       font-size: 20px;
+     }
+   
+     .btn {
+       flex-direction: column;
+       gap: 15px;
+     }
+   
+     .button1, .button2 {
+       width: 100%;
+     }
+   
+     .input_field {
+       font-size: 14px;
+     }
+   
+     .button3 {
+       font-size: 16px;
+       padding: 12px;
+     }
+   }

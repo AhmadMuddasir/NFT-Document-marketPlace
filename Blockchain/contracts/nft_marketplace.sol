@@ -1,10 +1,14 @@
 // SPDX-License-Identifier: UNLICENSED
+//not using currently for development purpose
+// import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+
+
 pragma solidity ^0.8.10;
 contract DocumentMARKETPLACE {
-    address payable contractOwner;
-    uint256 listingPrice = 0.015 ether;
+    address payable immutable contractOwner;
+    uint256 public listingPrice = 0.015 ether;
     uint public imagesCount = 0;
-    uint256 public platformFeePercent = 10;
+    uint256 public constant platformFeePercent = 10;
 
     constructor() {
     contractOwner = payable(msg.sender);
@@ -133,10 +137,15 @@ contract DocumentMARKETPLACE {
         documents.owner = msg.sender;
 
         (bool feeSuccess, ) = contractOwner.call{value: fee}("");
-        (bool send, ) = previousOwner.call{value: ownerShare}("");
-        require(send && feeSuccess, "transaction Failed");
+        (bool success, ) = previousOwner.call{value: ownerShare}("");
+        require(success && feeSuccess, "transaction Failed");
         emit documentsPurchased(_id, msg.sender, msg.value);
     }
+    // add nonRetrant
+    function withdrawFund() external {
+        require(msg.sender == contractOwner,"you are not the owner");
+        (bool success,) = payable(contractOwner).call{value:address(this).balance}("");
+        require(success,"transaction failed");
+    }
 
-    function withdrawFund()
 }

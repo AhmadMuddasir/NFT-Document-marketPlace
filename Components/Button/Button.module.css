@@ -1,0 +1,74 @@
+/* Button.module.css */
+.button {
+     position: relative;
+     padding: 8px 20px;
+     border: none;
+     border-radius: 8px ;
+     background: linear-gradient(45deg, #313030 0%, #2a2929 100%);
+     color: white;
+     font-weight: 600;
+     font-size: 0.8rem;
+     text-transform: uppercase;
+     cursor: pointer;
+     overflow: hidden;
+     transition: all 0.3s ease;
+     box-shadow: 0 4px 15px rgba(248, 155, 41, 0.4);
+     z-index: 1;
+     margin: 0.5rem;
+     border: 2px solid rgb(255, 89, 0);
+   }
+   
+   .button::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: linear-gradient(45deg, #4b373f 0%, #2d2419 100%);
+     opacity: 0;
+     transition: opacity 0.3s ease;
+     z-index: -1;
+   }
+   
+   .button:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 6px 20px rgba(51, 45, 48, 0.288);
+   }
+   
+   .button:hover::before {
+     opacity: 1;
+   }
+   
+   .button:active {
+     transform: translateY(0);
+   }
+   
+   .button_content {
+     position: relative;
+     z-index: 2;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 8px;
+   }
+   
+   /* Disconnect state styling */
+   .button[data-disconnect="true"] {
+     background: linear-gradient(45deg, #0c0a0b 0%, #2b2723 100%);
+   }
+   
+   /* Loading state (if needed) */
+   .button[data-loading="true"] .button_content::after {
+     content: '';
+     width: 16px;
+     height: 16px;
+     border: 2px solid rgba(255,255,255,0.3);
+     border-top-color: white;
+     border-radius: 50%;
+     animation: spin 1s linear infinite;
+   }
+   
+   @keyframes spin {
+     to { transform: rotate(360deg); }
+   }

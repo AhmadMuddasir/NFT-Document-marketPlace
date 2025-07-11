@@ -3,33 +3,17 @@ const {ethers} = require("hardhat");
 
 const script = async()=>{
      try {      
-          const NFTMARKETPLACE = await ethers.getContractFactory("NftMarketPlace");
-          const BASICNFT = await ethers.getContractFactory("BasicNft");
-          
-          const nftmarketplace = await NFTMARKETPLACE.deploy();
-          const basicnft = await BASICNFT.deploy();
-          await nftmarketplace.waitForDeployment();
-          await basicnft.waitForDeployment();
-          console.log("both contracts deployed");
-          
-          const mintTx = await basicnft.mintNft();
-          await mintTx.wait();
-          const tokenId = (await basicnft.getTokenCounter()) - 1n;
-          console.log("tokenId",tokenId)
-          
-          const approvalTnx = await basicnft.approve(nftmarketplace.getAddress(),tokenId);
-          await approvalTnx.wait();
-          console.log("Listing Nft....");
-          
-          const price = await ethers.parseEther("0.01")
-          const getBasicNftAddress = await basicnft.getAddress();
-          console.log("getBasicNftAddress",getBasicNftAddress,tokenId,price);
-          const tx = await nftmarketplace.listItem(getBasicNftAddress,tokenId,price);
-          await tx.wait();
-          console.log("listed")
-          
-          const contractAddress = await nftmarketplace.getAddress();
-          console.log(":contractAddress:",contractAddress);
+          const Document = await ethers.getContractFactory("DocumentMARKETPLACE");
+          const document = await Document.deploy();
+          await document.waitForDeployment();
+          // const update = await document.updateListingPrice(ethers.parseEther("0.025"),{
+          //      value:ethers.parseEther("0.015")
+          // });
+          // await update.wait();
+          // const price =  await document.listingPrice();
+          // console.log("listing price:",ethers.formatEther(price))
+          // console.log("listing price uploaded")
+          console.log("Contract address ",await document.getAddress() );
      } catch (error) {
           console.log(error);
      }
@@ -37,3 +21,4 @@ const script = async()=>{
 
 script();
 
+//0xEBEC283Beb29eEB5D2d87D75Aa20e81cc273cf0C

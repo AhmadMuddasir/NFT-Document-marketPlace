@@ -1,0 +1,168 @@
+/* Filter.module.css */
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #1e1e1e, #2d2d2d);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 800px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  position: relative; /* Added */
+}
+
+.filter_box {
+  display: flex;
+  align-items: center;
+  background: #2d2d2d;
+  border: 1px solid #f89b29;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+}
+
+.filter_box:hover {
+  box-shadow: 0 0 10px rgba(248, 155, 41, 0.3);
+}
+
+.filter_box img {
+  margin: 0 10px;
+  filter: brightness(0) invert(1) hue-rotate(180deg) saturate(5);
+}
+
+.filter_box input {
+  flex: 1;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  color: #e1e1e1;
+  font-size: 1rem;
+  outline: none;
+}
+
+.filter_box input::placeholder {
+  color: #b0b0b0;
+}
+
+.filter_select {
+  position: relative; /* Added */
+  width: 100%;
+  max-width: 200px; /* Added */
+}
+
+.filter_title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Changed from gap to space-between */
+  background: #2d2d2d;
+  border: 1px solid #f89b29;
+  border-radius: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+}
+
+.filter_title:hover {
+  background: rgba(248, 155, 41, 0.1);
+  box-shadow: 0 0 10px rgba(248, 155, 41, 0.3);
+}
+
+.filter_title h4 {
+  margin: 0;
+  color: #e1e1e1;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.filter_title img {
+  filter: brightness(0) invert(1) hue-rotate(180deg) saturate(5);
+  transition: transform 0.3s ease; /* Added for arrow animation */
+}
+
+/* .filter_select:hover .filter_title img {
+  transform: rotate(180deg); /* Arrow flip animation */
+
+
+.filter_dropdown {
+  position: absolute;
+  top: calc(100% + 5px); /* Changed from top: 100% */
+  left: 0;
+  right: 0; /* Added */
+  background: #2d2d2d;
+  border: 1px solid #f89b29;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  width: 100%; /* Changed from fixed width */
+  z-index: 10;
+  animation: dropdown 0.3s ease forwards;
+  overflow: hidden; /* Added */
+}
+
+.filter_dropdown p {
+  padding: 10px 15px;
+  margin: 0;
+  color: #e1e1e1;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.filter_dropdown p:hover {
+  background: linear-gradient(45deg, #f89b29, #e61538);
+  color: #ffffff;
+}
+
+@keyframes dropdown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .filter {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .filter_box,
+  .filter_select {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter {
+    margin: 10px;
+  }
+
+  .filter_box input {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .filter_title {
+    padding: 8px 12px;
+  }
+
+  .filter_title h4 {
+    font-size: 0.9rem;
+  }
+
+  .filter_dropdown p {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+}

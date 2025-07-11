@@ -1,0 +1,61 @@
+/* EthSpinningDiamond.module.css */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+  perspective: 1000px;
+}
+.home{
+    background: rgba(15, 15, 15, 0.571); 
+    backdrop-filter: blur(12px); 
+}
+
+.ethDiamond {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: spin 1.5s infinite linear;
+
+}
+
+.ethDiamondFace {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #cf9742, #be7d29);
+  border: 3px solid rgba(0, 0, 0, 0.5);
+  opacity: 0.9;
+}
+
+.ethDiamondFace:nth-child(1) {
+  transform: rotateY(0deg) rotateX(45deg) rotateZ(45deg);
+
+}
+
+.ethDiamondFace:nth-child(2) {
+  transform: rotateY(90deg) rotateX(45deg) rotateZ(45deg);
+  background: linear-gradient(135deg, #222222, #f48421);
+
+}
+
+.ethDiamondFace:nth-child(3) {
+  transform: rotateY(180deg) rotateX(45deg) rotateZ(45deg);
+  background: linear-gradient(135deg, #f6a843, #454545);
+}
+
+.ethDiamondFace:nth-child(4) {
+  transform: rotateY(270deg) rotateX(45deg) rotateZ(45deg);
+  background: linear-gradient(135deg, #030303, #db9d41);
+}
+
+@keyframes spin {
+  from {
+    transform: rotateY(0deg) rotateX(20deg);
+  }
+  to {
+    transform: rotateY(360deg) rotateX(20deg);
+  }
+}

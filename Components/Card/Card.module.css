@@ -1,0 +1,129 @@
+/* Card.module.css */
+.card {
+     display: grid;
+     flex-direction: row;
+     width: 80%;
+     border: 1px solid #e8955d;
+     max-width: 500px;
+     border-radius: 10px;
+     overflow: hidden;
+     background: #1e1e1e;
+     transition: all 0.3s cubic-bezier(0.23,1,0.32,1);
+     padding: 10px;
+     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+     position: relative;
+     margin: 15px auto;
+   }
+   
+   .card:hover {
+     transform: translateY(-5px);
+     box-shadow: 0 10px 25px rgba(248, 155, 41, 0.3);
+   }
+   
+   .card:hover .content {
+     background: linear-gradient(135deg, rgba(248, 155, 41, 0.1), rgba(230, 21, 56, 0.1));
+   }
+   
+   .content {
+     /* display: flex; */
+     flex-direction: column;
+     align-items: center;
+     gap: 15px;
+     padding: 15px;
+     transition: background 0.3s ease;
+   
+
+   }
+   
+   .image {
+     width: 100%;
+     height: auto;
+     border-radius: 8px;
+     object-fit: cover;
+     aspect-ratio: 1/1;
+     transition: transform 0.3s ease;
+   }
+   
+   .card:hover .image {
+     transform: scale(0.98);
+   }
+   
+   .para {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+     margin: 12px 0;
+     color: #e1e1e1;
+     font-weight: bold;
+     font-size: 20px;
+   }
+   
+   .para_small {
+     cursor: pointer;
+     transition: color 0.2s ease;
+   }
+   
+   .para_small:hover {
+     color: #f89b29;
+   }
+   
+   .avatar_img {
+     border-radius: 50%;
+     border: 2px solid #f89b29;
+   }
+   
+   .cardButton {
+     width: 100%;
+     padding: 10px;
+     margin-top: 10px;
+     background: linear-gradient(45deg, #f89b29, #e61538);
+     border: none;
+     border-radius: 6px;
+     color: white;
+     font-weight: 600;
+     cursor: pointer;
+     transition: all 0.3s ease;
+   }
+   
+    .cardButton:hover {
+     background: linear-gradient(45deg, #e61538, #f89b29);
+     transform: translateY(-2px);
+   }
+   
+   .number {
+     float: right;
+     color: #ffffff;
+     font-weight: bold;
+     background:#e5843e;
+     font-size: 29px;
+     padding: 2px;
+     margin: 2px 2px 2px 12px;
+     border-radius: 2px;
+   }
+   
+
+   /* Responsive adjustments */
+   @media (max-width: 768px) {
+     .card {
+       max-width: 100%;
+     }
+   
+     .content {
+       padding: 12px;
+     }
+   }
+   
+   @media (max-width: 480px) {
+     .para_small {
+       font-size: 0.8rem;
+     }
+     .para{
+           font-size: 15px;
+     }
+   
+     .cardButton {
+       padding: 8px;
+       font-size: 0.9rem;
+     }
+   }
