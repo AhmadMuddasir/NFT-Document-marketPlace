@@ -1,27 +1,277 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* Global Styles */
+body {
+  background-color: rgba(25, 24, 24, 0.889);
+  color: #fff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.home {
+  margin: 0;
+  margin-block: 3rem;
+}
+
+hr {
+  background: linear-gradient(-5deg, rgb(217, 155, 40) 0%, rgb(246, 6, 46) 100%);
+  font-weight: bold;
+  height: 1px;
+  margin-top: 10px;
+}
+
+.header {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+/* Upload Section */
+.upload-section {
+  width: 100%;
+  background: linear-gradient(-45deg, orange 0%, rgb(219, 43, 72) 100%);
+  border-radius: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  padding: 2rem;
+}
+
+.upload-info h1 {
+  margin-top: 8rem;
+  line-height: 0.5;
+  font-size: 2rem;
+}
+
+.upload-info p {
+  width: 92%;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.upload-button {
+  background: white;
+  color: black;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+}
+
+.upload-button:hover {
+  opacity: 0.9;
+}
+
+.upload-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Content Sections */
+.subheading {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  font-size: 2rem;
+}
+
+/* Card Grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+/* Avatar */
+.avatar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar_img {
+  border-radius: 0.5rem;
+  box-shadow: 4px 4px 20px rgb(19, 19, 19);
+  border: 1px solid rgb(233, 154, 7);
+  transition: transform 0.3s;
+}
+
+.avatar_img:hover {
+  transform: scale(1.05);
+}
+
+/* Modals */
+.profile-modal {
+  border-radius: 1rem;
+  background: rgb(12, 12, 12);
+  display: grid;
+  place-content: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 111111;
+  width: 100%;
+  height: 100%;
+}
+
+.loader {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-content: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  z-index: 11111;
+}
+
+/* Form Styles */
+.form-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: rgb(17, 17, 17);
+  z-index: 11111;
+}
+
+/* API Pages */
+.api-body {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+}
+
+.api-body p {
+  background: linear-gradient(-45deg, orange 0%, pink 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.api-title {
+  background: linear-gradient(-45deg, orange, pink);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+/* Media Queries */
+@media screen and (max-width: 55em) {
+  .card-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  
+  .upload-section {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    place-items: center;
+    padding-top: 1rem;
+  }
+  
+  .upload-info {
+    padding: 1rem;
+  }
+  
+  .upload-info h1 {
+    margin-top: 0;
+    font-size: 1.3rem;
+  }
+  
+  .form_inner {
+    width: 100%;
+    padding: 0;
+  }
+  
+  .api-body {
+    grid-template-columns: 1fr;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@media screen and (max-width: 45rem) {
+  .home {
+    width: 90%;
+  }
+  
+  .header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .upload-section {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    place-items: center;
+    padding-top: 1rem;
+  }
+  
+  .upload-info {
+    padding: 1rem;
+  }
+  
+  .upload-info h1 {
+    margin-top: 0;
+    font-size: 1.2rem;
+  }
+  
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .subheading {
+    font-size: 1.3rem;
+  }
+  
+  .form_inner {
+    width: 100%;
+    padding: 0;
+  }
+  
+  .api-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 35em) {
+  .home {
+    width: 90%;
+  }
+  
+  .header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .upload-section {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    place-items: center;
+    padding-top: 1rem;
+  }
+  
+  .upload-info {
+    padding: 1rem;
+  }
+  
+  .upload-info h1 {
+    margin-top: 0;
+    font-size: 1.3rem;
+  }
+  
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .subheading {
+    font-size: 1.3rem;
+  }
+  
+  .form_inner {
+    width: 100%;
+    padding: 0;
+  }
+  
+  .api-body {
+    grid-template-columns: 1fr;
+  }
 }

@@ -1,10 +1,115 @@
-import React from 'react'
-
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import styles from "./Header.module.css";
+import { Logo, Login, SignUp } from "..";
+import {toast} from "react-hot-toast";
 
 const Header = () => {
-  return (
-    <div>Header</div>
-  )
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [signup, setSignUp] = useState(false);
+  const [login, setLogin] = useState(false);
+  const [token, setToken] = useState("");
+
+
+  const menuList = [
+    { name: "Home", link: "/" },
+    { name: "About", link: "/#" },
+    { name: "API", link: "/nfts-api" },
+  ];
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
+
+  const openModel = (el) => {
+    if (el == "Login") {
+      setLogin(true);
+      setSignUp(false);
+    } else if (el == "SignUp") {
+      setLogin(false);
+      setSignUp(true);
+    } else {
+      closeMenu();
+    }
+  };
+
+  useEffect(()=>{
+    const token = localStorage.getItem("NFTApi Token")
+    setToken(token);
+  },[]);
+
+const logout = () => {
+  localStorage.removeItem("NFTApi Token");
+  setToken("");
+  toast.success("Logged out successfully!");
+  window.location.reload();
 }
 
-export default Header
+  return (
+    <>
+      <header className={styles.header}>
+        <div className={styles.headerContainer}>
+          <Logo className={styles.logo} />
+          <button className={styles.menuToggle} onClick={toggleMenu}>
+            <span className={styles.bar}></span>
+            <span className={styles.bar}></span>
+            <span className={styles.bar}></span>
+          </button>
+          <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : " "}`}>
+            <ul className={styles.menu}>
+              {menuList.map((el, i) => (
+                <li key={i}>
+                  <Link
+                    href={el.link}
+                    className={styles.link}
+                    onClick={closeMenu}
+                  >
+                    {el.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className={styles.authButtons}>
+              {token ? (
+                <button className={styles.logoutBtn} onClick={()=>logout()}>Logout</button>
+              ) : (
+                <>
+                  <button
+                    onClick={() => openModel("Login")}
+                    className={styles.loginBtn}
+                  >
+                    Login
+                  </button>
+                  <button
+                    onClick={() => openModel("SignUp")}
+                    className={styles.signupBtn}
+                  >
+                    Sign Up
+                  </button>
+                </>
+              )}
+            </div>
+          </nav>
+        </div>
+      </header>
+            {signup && (
+        <div className={styles.modal}>
+          <div className={styles.modalContent}>
+            <SignUp
+              setLogin={setLogin}
+              setSignUp={setSignUp}
+            />
+          </div>
+        </div>
+      )}
+      {login && (
+        <div className={styles.modal}>
+          <div className={styles.modalContent}>
+            <Login setLogin={setLogin} setSignUp={setSignUp} />
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default Header;

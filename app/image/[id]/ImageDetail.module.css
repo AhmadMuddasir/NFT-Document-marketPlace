@@ -1,0 +1,145 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(25, 24, 24, 0.889);
+  color: #fff;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 3rem auto;
+  width: 100%;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 1rem;
+}
+
+.nftDetail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.imageContainer {
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  background: #1e1e1e;
+}
+
+.mainImage {
+  max-width: 380px;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: #e1e1e1;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.description {
+  color: #aaa;
+  line-height: 1.6;
+}
+
+.metaGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.metaItem h3 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #f89b29;
+}
+
+.metaItem p {
+  margin: 0;
+}
+
+.purchaseButton {
+  background: linear-gradient(45deg, #f89b29, #e61538);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+  width: fit-content;
+}
+
+.purchaseButton:hover {
+  background: linear-gradient(45deg, #e61538, #f89b29);
+  transform: translateY(-2px);
+}
+
+.divider {
+  background: linear-gradient(-5deg, rgb(217, 155, 40) 0%, rgb(246, 6, 46) 100%);
+  height: 1px;
+  border: none;
+  margin: 2rem 0;
+}
+
+.relatedSection {
+  margin-top: 3rem;
+}
+
+.relatedTitle {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .nftDetail {
+    grid-template-columns: 1fr;
+  }
+  
+  .mainContent {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.5rem;
+  }
+  
+  .metaGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .relatedGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -3,7 +3,7 @@
      display: flex;
      justify-content: center;
      align-items: center;
-     min-height: 80vh;
+     min-height: 60vh;
      padding: 20px;
    }
    
@@ -12,8 +12,8 @@
      backdrop-filter: blur(12px);
      border-radius: 15px;
      padding: 30px;
-     width: 100%;
-     max-width: 500px;
+     width: 80%;
+     max-width: 400px;
      box-shadow: 5px 5px 15px   rgba(255, 255, 255, 0.15);
      border: 1px solid rgba(255, 255, 255, 0.2);
    }
@@ -78,7 +78,7 @@
    
    .button1 {
      flex: 1;
-     padding: 12px;
+     padding: 10px;
      background: #FF6F61;
      color: #FFFFFF;
      border: none;
@@ -95,7 +95,7 @@
    
    .button2 {
      flex: 1;
-     padding: 12px;
+     padding: 10px;
      background: #FFA500;
      color: #FFFFFF;
      border: none;
@@ -112,12 +112,12 @@
    
    .button3 {
      width: 100%;
-     padding: 14px;
+     padding: 12px;
      background: linear-gradient(90deg, #FF6F61 0%, #FFA500 100%);
      color: #FFFFFF;
      border: none;
      border-radius: 8px;
-     font-size: 18px;
+     font-size: 16px;
      font-weight: 500;
      cursor: pointer;
      margin-top: 20px;

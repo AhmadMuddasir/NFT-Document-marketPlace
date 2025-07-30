@@ -1,0 +1,261 @@
+/* UploadForm.module.css */
+.formOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+}
+
+.formContainer {
+  background: rgba(30, 30, 30, 0.9);
+  border-radius: 16px;
+  width: 90%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px dashed rgba(248, 155, 41, 0.4);
+  box-shadow: 0 8px 32px rgba(230, 21, 56, 0.1);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.formContainer:hover {
+  border-color: rgba(230, 21, 56, 0.6);
+  box-shadow: 
+    0 8px 32px rgba(230, 21, 56, 0.2),
+    0 4px 15px rgba(248, 155, 41, 0.2);
+}
+
+.formHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid rgba(248, 155, 41, 0.2);
+}
+
+.formHeader h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #f89b29;
+  text-shadow: 0 0 10px rgba(248, 155, 41, 0.3);
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+}
+
+.closeButton:hover {
+  color: #e61538;
+  transform: scale(1.1);
+}
+
+.form {
+  padding: 20px;
+}
+
+.formSection {
+  margin-bottom: 25px;
+  background: rgba(20, 20, 20, 0.4);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(248, 155, 41, 0.1);
+}
+
+.formSection h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.formSection h3::before {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(45deg, #f89b29, #e61538);
+  border-radius: 50%;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.formGroup input[type="text"],
+.formGroup input[type="email"],
+.formGroup input[type="number"],
+.formGroup textarea {
+  width: 100%;
+  padding: 12px;
+  background: rgba(15, 15, 15, 0.7);
+  border: 1px solid rgba(248, 155, 41, 0.3);
+  border-radius: 8px;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  border-color: #e61538;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(230, 21, 56, 0.3);
+}
+
+.formGroup textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.fileUploadGroup {
+  display: grid;
+  gap: 15px;
+}
+
+.fileUploadGroup label {
+  display: block;
+  padding: 30px 20px;
+  border: 2px dashed rgba(248, 155, 41, 0.4);
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(248, 155, 41, 0.05);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.fileUploadGroup label:hover {
+  border-color: rgba(230, 21, 56, 0.6);
+  background: rgba(230, 21, 56, 0.08);
+  color: #f89b29;
+}
+
+.fileUploadGroup input[type="file"] {
+  display: none;
+}
+
+.thumbnailPreview {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.thumbnailPreview img {
+  max-width: 100%;
+  max-height: 150px;
+  border-radius: 8px;
+  border: 2px solid rgba(248, 155, 41, 0.3);
+  transition: all 0.3s ease;
+}
+
+.thumbnailPreview img:hover {
+  border-color: rgba(230, 21, 56, 0.5);
+  transform: scale(1.02);
+}
+
+.categoryOptions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(248, 155, 41, 0.2);
+  margin-top: 20px;
+}
+
+.formActions button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.formActions button[type="button"] {
+  background: rgba(248, 155, 41, 0.1);
+  border: 1px solid rgba(248, 155, 41, 0.3);
+  color: #f89b29;
+}
+
+.formActions button[type="button"]:hover {
+  background: rgba(248, 155, 41, 0.2);
+  border-color: rgba(248, 155, 41, 0.5);
+}
+
+.formActions button[type="submit"] {
+  background: linear-gradient(45deg, #f89b29, #e61538);
+  color: white;
+  border: none;
+  box-shadow: 0 2px 10px rgba(230, 21, 56, 0.3);
+}
+
+.formActions button[type="submit"]:hover {
+  background: linear-gradient(45deg, #f89b29, #e61538);
+  box-shadow: 0 4px 15px rgba(230, 21, 56, 0.4);
+  transform: translateY(-1px);
+}
+
+.formActions button[type="submit"]:disabled {
+  background: #333;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .formContainer {
+    max-width: 90%;
+    padding: 15px;
+  }
+  
+  .formSection {
+    padding: 15px;
+  }
+  
+  .fileUploadGroup label {
+    padding: 20px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .formHeader h2 {
+    font-size: 1.3rem;
+  }
+  
+  .formActions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .formActions button {
+    width: 100%;
+  }
+}

@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { StateContextProvider } from '@/Context/NFTs'
 const inter = Inter({ subsets: ['latin'] })
+import { Toaster } from 'react-hot-toast'
 
 export const metadata = {
   title: 'Create Next App',
@@ -13,6 +14,16 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
       <StateContextProvider>
+                  <Toaster 
+            position="top-center"
+            toastOptions={{
+              duration: 4000,
+              style: {
+                background: '#363636',
+                color: '#fff',
+              },
+            }}
+          />
         {children}
     </StateContextProvider>
       </body>

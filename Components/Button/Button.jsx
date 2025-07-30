@@ -7,14 +7,12 @@ const Button = ({disconnect,connect,address,file}) => {
     <>
     {
       address ? (
-        <button onClick={ () =>console.log("disconnecet")} className={Style.button}>
-          <span>{file ? "Upload" : "Disconnect"}</span>
+        <button onClick={ () =>disconnect()} className={Style.button}>
+          <span  className={Style.button_content}>{file ? "Upload" : "Disconnect"}</span>
         </button>
       ) : (
-        <button onClick={() =>console.log("connecet")}>
-          <span className={Style.button}>
-            <span className="">Connect</span>
-          </span>
+        <button className={Style.button} onClick={() =>connect()}>
+            Connect
         </button>
       )
     }

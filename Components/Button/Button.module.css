@@ -14,7 +14,7 @@
      transition: all 0.3s ease;
      box-shadow: 0 4px 15px rgba(248, 155, 41, 0.4);
      z-index: 1;
-     margin: 0.5rem;
+     margin: 1rem;
      border: 2px solid rgb(255, 89, 0);
    }
    
