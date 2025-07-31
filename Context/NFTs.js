@@ -240,14 +240,17 @@ const getUploadedImages = async () => {
   const buyDocument = async (id, price) => {
     try {
       setLoading(true);
+      const priceinWei = ethers.parseEther(price)
+      console.log("price in Wei",priceinWei);
       const tnx = await contract.purchaseDocument(id, {
-        value: price,
+        value: priceinWei,
       });
       await tnx.wait();
       toast.success("Document purchased successfully!");
+      window.location.reload();
     } catch (error) {
       console.error("Error purchasing document:", error);
-      toast.error(`Purchase failed: ${error.message}`);
+      toast.error(`Purchase failed: ${error.reason || "cannot buy your own Document"}`);
     } finally {
       setLoading(false);
     }

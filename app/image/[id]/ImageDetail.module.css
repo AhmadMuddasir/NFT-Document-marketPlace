@@ -36,6 +36,12 @@
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   background: #1e1e1e;
 }
+.buttonStyle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px;
+}
 
 .mainImage {
   max-width: 380px;
@@ -88,8 +94,9 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 1.5rem;
+  margin: 1rem;
   width: fit-content;
+
 }
 
 .purchaseButton:hover {
