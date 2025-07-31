@@ -21,11 +21,26 @@ export const StateContextProvider = ({ children }) => {
   const [userBalance, setUserBalance] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const initializeEthers = async () => {
+    const connect = async () => {
     try {
       if (!window.ethereum) {
-        throw new Error("MetaMask is not installed");
+        throw new Error("MetaMask not installed");
       }
+      console.log("Requesting MetaMask connection...");
+      await window.ethereum.request({ method: "eth_requestAccounts" });
+      await initializeEthers();
+      toast.success("Wallet connected successfully!");
+    } catch (error) {
+      console.error("Error connecting wallet:", error);
+    }
+  };
+
+  const initializeEthers = async () => {
+    try {
+    if (!window.ethereum) {
+      console.warn("MetaMask not detected");
+      return;
+    }
       
       console.log("Contract address:", contractAddress);
       const provider = new ethers.BrowserProvider(window.ethereum);
@@ -71,19 +86,7 @@ export const StateContextProvider = ({ children }) => {
   };
 
   // Connect Wallet
-  const connect = async () => {
-    try {
-      if (!window.ethereum) {
-        throw new Error("MetaMask not installed");
-      }
-      console.log("Requesting MetaMask connection...");
-      await window.ethereum.request({ method: "eth_requestAccounts" });
-      await initializeEthers();
-      toast.success("Wallet connected successfully!");
-    } catch (error) {
-      console.error("Error connecting wallet:", error);
-    }
-  };
+
 
   // Disconnect Wallet
   const disconnect = async () => {
