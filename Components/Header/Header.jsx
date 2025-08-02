@@ -3,7 +3,8 @@ import Link from "next/link";
 import styles from "./Header.module.css";
 import { Logo, Login, SignUp } from "..";
 import {toast} from "react-hot-toast";
-
+import Account from "../Account/Account";
+import { FaUserCircle } from "react-icons/fa"; // Added import for profile icon
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [signup, setSignUp] = useState(false);
@@ -87,6 +88,9 @@ const logout = () => {
                   </button>
                 </>
               )}
+              <Link href="/profile" className={styles.profileIcon} onClick={closeMenu}>
+                <FaUserCircle size={24} />
+              </Link>
             </div>
           </nav>
         </div>

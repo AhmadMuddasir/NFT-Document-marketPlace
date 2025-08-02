@@ -64,8 +64,12 @@
 }
 
 .description {
-  color: #aaa;
+  color: #ffffff;
   line-height: 1.6;
+  font-size: 20px;
+  padding: 14px;
+  font-family:  monospace;
+  
 }
 
 .metaGrid {

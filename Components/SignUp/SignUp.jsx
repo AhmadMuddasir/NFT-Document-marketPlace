@@ -43,11 +43,9 @@ const SignUp = ({setLogin, setSignUp}) => {
         window.location.reload();
       } else {
         console.log("something went wrong try again later");
-        toast.error("something went wrong please try later")
       }
     } catch (error) {
       console.log(error);
-      toast.error("error in signing up")
     }
   };
 

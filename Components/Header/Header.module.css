@@ -153,7 +153,32 @@
      width: 90%;
      position: relative;
    }
-   
+   /* Add styles for the profile icon */
+.profileIcon {
+  color: #ff5722; /* Matches cardButton color */
+  transition: color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.profileIcon:hover {
+  color: #f06292; /* Matches cardButton hover color */
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .profileIcon {
+    padding: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profileIcon {
+    padding: 4px;
+  }
+}
    /* Mobile styles */
    @media (max-width: 768px) {
      .menuToggle {

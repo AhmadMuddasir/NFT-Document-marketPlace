@@ -61,6 +61,7 @@ export default function ImageDetail() {
   const purchaseNFT = () => {
     try {
       const id = Number(params.id);
+      console.log("check:",id,"==", nft.price)
       buyDocument(id, nft.price);
     } catch (error) {
       console.log(error);
@@ -116,7 +117,6 @@ export default function ImageDetail() {
               <div className={styles.metaItem}>
                 <h3>Id:{nft.imageId}</h3>
                 {/* <p>{nft.imageId}</p> */}
-                {console.log("this is nft pdf :", nft.pdf)}
               </div>
               </div>
 

@@ -1,0 +1,139 @@
+.profileContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #202020 0%, #1f1e1e 100%); /* Matches Card */
+  min-height: 100vh;
+  color: #ffffff; /* White text for contrast */
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #e9610c; /* Matches cardButton color */
+}
+
+.userInfo {
+  background: #2a2a2a; /* Slightly lighter than Card for contrast */
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Matches Card */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.userInfo:hover {
+  transform: translateY(-5px); /* Matches Card hover */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.userInfo p {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+  color: #e65100; /* Matches para color */
+}
+
+.subtitle {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #ff5722; /* Matches cardButton */
+}
+
+.nftGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Matches Card max-width */
+  gap: 1.5rem;
+}
+
+.warning {
+  color: #d81b60; /* Matches para_small */
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.skeletonGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.skeletonCard {
+  width: 100%;
+  height: 400px; /* Matches Card approximate height */
+  background: linear-gradient(135deg, #2a2a2a 0%, #252525 100%); /* Slightly lighter gradient */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.skeletonCard {
+  background: linear-gradient(to right, #2a2a2a 8%, #333333 18%, #2a2a2a 33%);
+  background-size: 800px 104px;
+}
+
+@media (max-width: 768px) {
+  .profileContainer {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+  }
+
+  .userInfo {
+    padding: 1rem;
+  }
+
+  .nftGrid,
+  .skeletonGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  .skeletonCard {
+    height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profileContainer {
+    padding: 0.5rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1.3rem;
+  }
+
+  .userInfo {
+    padding: 0.8rem;
+  }
+
+
+  .nftGrid,
+  .skeletonGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .skeletonCard {
+    height: 300px;
+  }
+}

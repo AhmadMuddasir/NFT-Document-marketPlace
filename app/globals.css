@@ -2,6 +2,7 @@
 body {
   background-color: rgba(25, 24, 24, 0.889);
   color: #fff;
+  box-sizing: border-box;
 }
 
 .home {
@@ -23,36 +24,42 @@ hr {
 
 /* Upload Section */
 .upload-section {
-  width: 100%;
   background: linear-gradient(-45deg, orange 0%, rgb(219, 43, 72) 100%);
   border-radius: 1rem;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 4rem;
-  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
 }
 
 .upload-info h1 {
-  margin-top: 8rem;
-  line-height: 0.5;
+  margin-top: 4rem;
+  line-height: 25px;
   font-size: 2rem;
 }
 
 .upload-info p {
-  width: 92%;
+  width: 90%;
   font-size: 1rem;
   line-height: 1.5;
 }
 
 .upload-button {
-  background: white;
-  color: black;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s;
+  background: linear-gradient(135deg, #1a1919 0%, #842600 50%, #f03704e4 100%);
   border: none;
+  border-radius: 12px;
+  padding: 16px 24px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 1.5rem;
+  min-width: 150px;
+}
+.upload-button svg {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .upload-button:hover {

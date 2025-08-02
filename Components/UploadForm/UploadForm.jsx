@@ -130,7 +130,6 @@ const UploadForm = ({ onClose, address, refreshData }) => {
       onClose();
     } catch (error) {
       console.error("Upload error:", error);
-      toast.error(`Upload failed: ${error.message}`, { id: toastId });
     } finally {
       setLoading(false);
     }

@@ -20,20 +20,55 @@ export const StateContextProvider = ({ children }) => {
   const [address, setAddress] = useState(null);
   const [userBalance, setUserBalance] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [isConnecting, setIsConnecting] = useState(false);
 
-    const connect = async () => {
-    try {
-      if (!window.ethereum) {
-        throw new Error("MetaMask not installed");
-      }
-      console.log("Requesting MetaMask connection...");
-      await window.ethereum.request({ method: "eth_requestAccounts" });
-      await initializeEthers();
-      toast.success("Wallet connected successfully!");
-    } catch (error) {
-      console.error("Error connecting wallet:", error);
+
+  //   const connect = async () => {
+  //   try {
+  //     if (!window.ethereum) {
+  //       throw new Error("MetaMask not installed");
+  //     }
+  //     console.log("Requesting MetaMask connection...");
+  //     await window.ethereum.request({ method: "eth_requestAccounts" });
+  //     await initializeEthers();
+  //     toast.success("Wallet connected successfully!");
+  //   } catch (error) {
+  //     console.error("Error connecting wallet:", error);
+  //   }
+  // };
+
+  const connect = async () => {
+  try {
+    if (!window.ethereum) {
+      toast.error("Please install MetaMask!");
+      return;
     }
-  };
+
+    if (isConnecting) return;
+    setIsConnecting(true);
+
+    // Check if already connected
+    const accounts = await window.ethereum.request({ 
+      method: "eth_accounts" 
+    });
+
+    if (accounts.length > 0) {
+      await initializeEthers();
+      return;
+    }
+
+    // New connection
+    console.log("Requesting MetaMask connection...");
+    await window.ethereum.request({ method: "eth_requestAccounts" });
+    await initializeEthers();
+    toast.success("Wallet connected!");
+  } catch (error) {
+    console.error("Connection error:", error);
+  
+  } finally {
+    setIsConnecting(false);
+  }
+};
 
   const initializeEthers = async () => {
     try {
@@ -102,7 +137,6 @@ export const StateContextProvider = ({ children }) => {
       }
     } catch (error) {
       console.error("Disconnection error:", error);
-      toast.error(`Disconnection error: ${error.message}`);
     }
   };
 
@@ -117,7 +151,6 @@ export const StateContextProvider = ({ children }) => {
       }
     } catch (error) {
       console.error("Error fetching balance:", error);
-      toast.error(`Error fetching balance: ${error.message}`);
     }
   };
 
@@ -209,7 +242,6 @@ const getUploadedImages = async () => {
     return allImages;
   } catch (error) {
     console.error("Error fetching uploaded images:", error);
-    toast.error(`Error fetching images: ${error.message}`);
     return [];
   }
 };
@@ -235,7 +267,6 @@ const getUploadedImages = async () => {
       };
     } catch (error) {
       console.error("Error fetching single image:", error);
-      toast.error(`Error fetching image: ${error.message}`);
       return null;
     }
   };
@@ -244,7 +275,6 @@ const getUploadedImages = async () => {
     try {
       setLoading(true);
       const priceinWei = ethers.parseEther(price)
-      console.log("price in Wei",priceinWei);
       const tnx = await contract.purchaseDocument(id, {
         value: priceinWei,
       });
@@ -267,7 +297,7 @@ const getUploadedImages = async () => {
       toast.success("Document price updated successfully!");
     } catch (error) {
       console.error("Error updating document price:", error);
-      toast.error(`Update failed: ${error.message}`);
+      toast.error(`Update failed: ${error.reason }`);
     } finally {
       setLoading(false);
     }
@@ -281,7 +311,7 @@ const getUploadedImages = async () => {
       toast.success("Listing price updated successfully!");
     } catch (error) {
       console.error("Error updating listing price:", error);
-      toast.error(`Update failed: ${error.message}`);
+      toast.error(`Update failed: ${error.reason}`);
     } finally {
       setLoading(false);
     }
@@ -293,7 +323,7 @@ const getUploadedImages = async () => {
       return response.data;
     } catch (error) {
       console.error("Error fetching NFTs from API:", error);
-      toast.error(`Error fetching NFTs: ${error.message}`);
+      toast.error(`Error fetching NFTs: ${error.reason}`);
       return [];
     }
   };
@@ -304,7 +334,7 @@ const getUploadedImages = async () => {
       return response.data;
     } catch (error) {
       console.error("Error fetching single NFT from API:", error);
-      toast.error(`Error fetching NFT: ${error.message}`);
+      toast.error(`Error fetching NFT: ${error.reason}`);
       return null;
     }
   };

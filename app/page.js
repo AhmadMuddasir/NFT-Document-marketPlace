@@ -1,11 +1,20 @@
 "use client";
-
+import {FaFileUpload } from "react-icons/fa"; // Font Awesome
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import axios from "axios";
 import { useStateContext } from "../Context/NFTs";
 import images from "../Components/Image/client/index";
-import { Button, Card, Filter, Footer, Header, Logo, Profile, UploadForm } from "../Components/index";
+import {
+  Button,
+  Card,
+  Filter,
+  Footer,
+  Header,
+  Logo,
+  Profile,
+  UploadForm,
+} from "../Components/index";
 import toast from "react-hot-toast";
 
 export default function Home() {
@@ -39,7 +48,6 @@ export default function Home() {
       await getAllNFTsAPI();
     } catch (error) {
       console.error("Error fetching images:", error);
-      toast.error(`Error fetching images: ${error.message}`);
     } finally {
       setIsLoading(false);
     }
@@ -89,13 +97,18 @@ export default function Home() {
             )}
           </div>
         </div>
-        <button
-          className="upload-button"
-          onClick={() => setShowForm(true)}
-          disabled={!address}
-        >
-          Upload Document
-        </button>
+        <div className="upload">
+          <button
+            className="upload-button"
+            onClick={() => setShowForm(true)}
+            disabled={!address}
+          >
+            <div className="flex flex-col items-center justify-center gap-1">
+              <FaFileUpload className="text-3xl" /> {/* Larger icon */}
+              <span className="text-sm font-medium">Upload Document</span>
+            </div>
+          </button>
+        </div>
       </div>
 
       <h1 className="subheading">All NFTs of Marketplace</h1>
