@@ -1,3 +1,4 @@
+"use client"
 import { SignUp } from '@/Components'
 import React from 'react'
 
