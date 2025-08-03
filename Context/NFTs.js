@@ -11,7 +11,7 @@ dotenv.config();
 
 const StateContext = createContext();
 
-export const StateContextProvider = ({ children }) => {
+export const StateContextProvider =({ children })=>{
   const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
 
   const [provider, setProvider] = useState(null);
@@ -37,7 +37,7 @@ export const StateContextProvider = ({ children }) => {
   //   }
   // };
 
-  const connect = async () => {
+  const connect =async()=>{
   try {
     if (!window.ethereum) {
       toast.error("Please install MetaMask!");
@@ -70,7 +70,7 @@ export const StateContextProvider = ({ children }) => {
   }
 };
 
-  const initializeEthers = async () => {
+  const initializeEthers =async()=>{
     try {
     if (!window.ethereum) {
       console.warn("MetaMask not detected");
@@ -79,19 +79,7 @@ export const StateContextProvider = ({ children }) => {
       
       console.log("Contract address:", contractAddress);
       const provider = new ethers.BrowserProvider(window.ethereum);
-      // const network = await provider.getNetwork();
-      // console.log("Connected network:", network.name, network.chainId);
-      // if (network.chainId !== 11155111n) {
-      //   try {
-      //     await window.ethereum.request({
-      //       method: "wallet_switchEthereumChain",
-      //       params: [{ chainId: "0xaa36a7" }], // Sepolia chainId
-      //     });
-      //   } catch (switchError) {
-      //     toast.error("Please switch MetaMask to the Sepolia network");
-      //     return;
-      //   }
-      // }
+
       const signer = await provider.getSigner();
       if (!contractAddress || !ABI.abi) {
         throw new Error("Contract address or ABI is missing");
@@ -102,7 +90,7 @@ export const StateContextProvider = ({ children }) => {
       setContract(contract);
       setAddress(await signer.getAddress());
 
-      const handleAccountChanged = async (accounts) => {
+      const handleAccountChanged =async(accounts)=>{
         if (accounts.length === 0) {
           setAddress(null);
           setUserBalance(null);
@@ -120,21 +108,16 @@ export const StateContextProvider = ({ children }) => {
     }
   };
 
-  // Connect Wallet
+
 
 
   // Disconnect Wallet
-  const disconnect = async () => {
+  const disconnect =async()=>{
     try {
-      if (window.ethereum && window.ethereum.selectedAddress) {
-        await window.ethereum.request({
-          method: "wallet_revokePermissions",
-          params: [{ eth_accounts: {} }],
-        });
         setAddress(null);
         setUserBalance(null);
         toast.success("Wallet disconnected successfully!");
-      }
+      
     } catch (error) {
       console.error("Disconnection error:", error);
     }
