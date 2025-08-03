@@ -1,5 +1,6 @@
+"use client"
 import React, { useEffect, useState } from "react";
-import Image from "next/image"; // Add missing import
+import Image from "next/image"; 
 import styles from "./Filter.module.css";
 import images from "../Image/index";
 
