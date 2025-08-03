@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../Model/userModel");
 require("dotenv").config();
 
-const signToken = (id)=>{
+const   signToken = (id)=>{
      return jwt.sign({id},process.env.NEXT_PUBLIC_JWT_SECRET,{
           expiresIn:process.env.NEXT_PUBLIC_JWT_EXPIRES_IN,
      });
