@@ -8,8 +8,6 @@ import Logo from "./Logo/Logo";
 import Filter from "./Filter/Filter";
 import Form from "./Form/Form";
 import CheckBox from "./CheckBox/CheckBox";
-import Login from "./Login/Login";
-import SignUp from "./SignUp/SignUp";
 import Product from "./Product/Product";
 
 export {
@@ -23,7 +21,5 @@ export {
   Filter,
   Form,
   CheckBox,
-  Login,
-  SignUp,
   Product,
 };

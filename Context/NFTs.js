@@ -263,7 +263,8 @@ const getUploadedImages = async () => {
   const updateDocumentPrice = async (price, id) => {
     try {
       setLoading(true);
-      const tnx = await contract.updateBuyingPrice(price, id);
+        const priceinWei = ethers.parseEther(price)
+      const tnx = await contract.updateBuyingPrice(priceinWei, id);
       await tnx.wait();
       toast.success("Document price updated successfully!");
     } catch (error) {
@@ -307,6 +308,8 @@ const getUploadedImages = async () => {
       return null;
     }
   };
+
+  
 
   return (
     <StateContext.Provider

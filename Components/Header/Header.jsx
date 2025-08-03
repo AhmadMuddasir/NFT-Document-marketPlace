@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./Header.module.css";
-import { Logo, Login, SignUp } from "..";
+import { Logo} from "..";
 import {toast} from "react-hot-toast";
 import Account from "../Account/Account";
 import { FaUserCircle } from "react-icons/fa"; // Added import for profile icon
@@ -72,24 +72,6 @@ const logout = () => {
               ))}
             </ul>
             <div className={styles.authButtons}>
-              {token ? (
-                <button className={styles.logoutBtn} onClick={()=>logout()}>Logout</button>
-              ) : (
-                <>
-                  <button
-                    onClick={() => openModel("Login")}
-                    className={styles.loginBtn}
-                  >
-                    Login
-                  </button>
-                  <button
-                    onClick={() => openModel("SignUp")}
-                    className={styles.signupBtn}
-                  >
-                    Sign Up
-                  </button>
-                </>
-              )}
               <Link href="/profile" className={styles.profileIcon} onClick={closeMenu}>
                 <FaUserCircle size={24} />
               </Link>
@@ -97,23 +79,6 @@ const logout = () => {
           </nav>
         </div>
       </header>
-            {signup && (
-        <div className={styles.modal}>
-          <div className={styles.modalContent}>
-            <SignUp
-              setLogin={setLogin}
-              setSignUp={setSignUp}
-            />
-          </div>
-        </div>
-      )}
-      {login && (
-        <div className={styles.modal}>
-          <div className={styles.modalContent}>
-            <Login setLogin={setLogin} setSignUp={setSignUp} />
-          </div>
-        </div>
-      )}
     </>
   );
 };

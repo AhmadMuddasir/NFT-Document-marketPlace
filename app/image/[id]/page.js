@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 import { Card, Header, Footer, Logo } from "@/Components";
 import { useStateContext } from "@/Context/NFTs";
 import styles from "./ImageDetail.module.css";
-
+import {ethers} from "ethers";
 export default function ImageDetail() {
   const {
     address,
@@ -15,12 +15,12 @@ export default function ImageDetail() {
     getUploadedImages,
     loading,
     buyDocument,
+    updateDocumentPrice
   } = useStateContext();
   const params = useParams();
-  const router = useRouter();
   const [nft, setNft] = useState(null);
   const [relatedNfts, setRelatedNfts] = useState([]);
-  const [isOwner, setIsOwner] = useState(false);
+  const [newPrice, setNewPrice] = useState("");
 
   const fetchData = async () => {
     try {
@@ -67,6 +67,21 @@ export default function ImageDetail() {
       console.log(error);
     }
   };
+
+  const handlePriceUpdate = async()=>{
+    try {
+      if(newPrice <= 0){
+        toast.message("price should be greater then 0")
+        return;
+      }
+         
+         await updateDocumentPrice(newPrice, nft.imageId);
+         fetchData();
+
+    } catch (error) {
+      
+    }
+  }
 
   const openPdf = () => {
     if (address == nft.creator) {
@@ -134,6 +149,20 @@ export default function ImageDetail() {
             
           </div>
         </section>
+        <div className={styles.updateDocumentPrice}>
+          <p>Update Document Price</p>
+          <input type="number"
+          placeholder="new ETH price"
+          value={newPrice}
+          onChange={(e)=>{setNewPrice(e.target.value)}}
+          className={styles.inputDesign}
+          />
+          <button
+          onClick={handlePriceUpdate}
+          className={styles.purchaseButton}
+          >Update Price
+          </button>
+        </div>
 
         <hr className={styles.divider} />
 
