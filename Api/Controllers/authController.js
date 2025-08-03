@@ -3,6 +3,7 @@ const User = require("../Model/userModel");
 require("dotenv").config();
 
 const   signToken = (id)=>{
+     console.log("sign token executed")
      return jwt.sign({id},process.env.NEXT_PUBLIC_JWT_SECRET,{
           expiresIn:process.env.NEXT_PUBLIC_JWT_EXPIRES_IN,
      });
@@ -12,6 +13,8 @@ const   signToken = (id)=>{
 
 
 const createSendToken = (user,statuscode,req,res)=>{
+          console.log("createSendToken token executed")
+
 
      const token = signToken(user._id);
      
@@ -42,7 +45,8 @@ const createSendToken = (user,statuscode,req,res)=>{
 exports.signUp = async(req,res,next)=>{
      try {
           
-     
+                    console.log("signUp token executed")
+
           const newUser = await User.create({
                name:req.body.name,
                email:req.body.email,
@@ -50,6 +54,8 @@ exports.signUp = async(req,res,next)=>{
                passwordConfirm:req.body.passwordConfirm,
      
           });
+                              console.log("signUp completed")
+
           createSendToken(newUser,201,req,res);
      } catch (error) {
           console.log(error)

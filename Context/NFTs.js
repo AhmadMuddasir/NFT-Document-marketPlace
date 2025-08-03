@@ -294,7 +294,6 @@ const getUploadedImages = async () => {
       return response.data;
     } catch (error) {
       console.error("Error fetching NFTs from API:", error);
-      toast.error(`Error fetching NFTs: ${error.reason}`);
       return [];
     }
   };
@@ -305,7 +304,6 @@ const getUploadedImages = async () => {
       return response.data;
     } catch (error) {
       console.error("Error fetching single NFT from API:", error);
-      toast.error(`Error fetching NFT: ${error.reason}`);
       return null;
     }
   };

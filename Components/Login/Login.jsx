@@ -31,7 +31,7 @@ const Login = ({ setLogin, setSignUp }) => {
     try {
       const response = await axios({
         method: "POST",
-        url: "api/v1/user/login",
+        url: "/api/v1/user/login",
         withCredentials: true,
         data: {
           email: user.email,
