@@ -6,7 +6,6 @@ import axios from "axios";
 import { ethers } from "ethers"; // Correct import for ethers v6.14.4
 import toast from "react-hot-toast";
 import ABI from "../ContractABI/ABI.json";
-
 dotenv.config();
 
 const StateContext = createContext();
@@ -23,19 +22,7 @@ export const StateContextProvider =({ children })=>{
   const [isConnecting, setIsConnecting] = useState(false);
 
 
-  //   const connect = async () => {
-  //   try {
-  //     if (!window.ethereum) {
-  //       throw new Error("MetaMask not installed");
-  //     }
-  //     console.log("Requesting MetaMask connection...");
-  //     await window.ethereum.request({ method: "eth_requestAccounts" });
-  //     await initializeEthers();
-  //     toast.success("Wallet connected successfully!");
-  //   } catch (error) {
-  //     console.error("Error connecting wallet:", error);
-  //   }
-  // };
+
 
   const connect =async()=>{
   try {
@@ -71,6 +58,7 @@ export const StateContextProvider =({ children })=>{
 };
 
   const initializeEthers =async()=>{
+    console.log( "this is the Abi",ABI.abi);
     try {
     if (!window.ethereum) {
       console.warn("MetaMask not detected");
