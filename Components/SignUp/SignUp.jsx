@@ -17,6 +17,7 @@ const SignUp = ({setLogin, setSignUp}) => {
   };
 
   const createAccount = async (e) => {
+     e.preventDefault()
     if (!user.name || !user.password || !user.email || !user.confirmPassword) {
       console.log("please Provide all the details");
       toast("please provide all the fields", {
