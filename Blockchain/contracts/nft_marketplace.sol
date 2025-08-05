@@ -147,5 +147,15 @@ contract DocumentMARKETPLACE {
         (bool success,) = payable(contractOwner).call{value:address(this).balance}("");
         require(success,"transaction failed");
     }
+    function deleteDocument( uint _id) external  {
+        Documents storage items =  documentsList[_id];
+        require(items.owner == msg.sender,"you cannot delete others document");
+        require(items.owner != address(0), "Document does not exist");
+        (bool success,) = payable(items.owner).call{value:items.price}("");
+        require(success);
+        delete  documentsList[_id];
+
+
+    }
 
 }

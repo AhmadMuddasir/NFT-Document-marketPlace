@@ -5,7 +5,10 @@ import dotenv from "dotenv";
 import axios from "axios";
 import { ethers } from "ethers"; // Correct import for ethers v6.14.4
 import toast from "react-hot-toast";
-import ABI from "../ContractABI/ABI.json";
+import ABI from "../Blockchain/artifacts/contracts/nft_marketplace.sol/DocumentMARKETPLACE.json";
+
+console.log("this is the ABi 0",ABI);
+
 dotenv.config();
 
 const StateContext = createContext();
