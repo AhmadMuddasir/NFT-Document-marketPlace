@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: UNLICENSED
 //not using currently for development purpose
-// import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
 
 pragma solidity ^0.8.10;
-contract DocumentMARKETPLACE {
+contract DocumentMARKETPLACE is ReentrancyGuard {
     address payable immutable contractOwner;
     uint256 public listingPrice = 0.015 ether;
     uint public imagesCount = 0;

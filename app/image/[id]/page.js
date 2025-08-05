@@ -1,12 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
-import { FaFilePdf, FaLock, FaShoppingCart, FaCheck } from 'react-icons/fa';
+import { FaFilePdf, FaLock, FaShoppingCart, FaCheck,FaTrash  } from 'react-icons/fa';
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { Card, Header, Footer, Logo } from "@/Components";
 import { useStateContext } from "@/Context/NFTs";
 import styles from "./ImageDetail.module.css";
-import {ethers} from "ethers";
 export default function ImageDetail() {
   const {
     address,
@@ -15,7 +14,9 @@ export default function ImageDetail() {
     getUploadedImages,
     loading,
     buyDocument,
-    updateDocumentPrice
+    updateDocumentPrice,
+    deleteDocument,
+    userBalance
   } = useStateContext();
   const params = useParams();
   const [nft, setNft] = useState(null);
@@ -79,7 +80,7 @@ export default function ImageDetail() {
          fetchData();
 
     } catch (error) {
-      
+      console.log(error)
     }
   }
 
@@ -93,10 +94,12 @@ export default function ImageDetail() {
     }
   };
 
+
   return (
     <div className={styles.container}>
       <Header />
       <h2 className={styles.description}>Account:{address.slice(0.10)}..</h2>
+      <h2 className={styles.description}>UserBalance:{userBalance.slice(0.10)}..</h2>
 
       <main className={styles.mainContent}>
         <section className={styles.nftDetail}>
@@ -109,7 +112,7 @@ export default function ImageDetail() {
           </div>
 
           <div className={styles.details}>
-            <h1 className={styles.title}>Title: {nft.title}</h1>
+            <h1 className={styles.title}>Title:{nft.title}</h1>
             <p className={styles.description}>Description: {nft.description}</p>
 
             <div className={styles.metaGrid}>
@@ -144,6 +147,9 @@ export default function ImageDetail() {
             </button>
             <button className={styles.purchaseButton} onClick={() => openPdf()}>
               Open Document<FaFilePdf className="text-[15px]"/>
+            </button>
+            <button className={styles.purchaseButton} onClick={() =>  deleteDocument(nft.imageId)}>
+              Delete Documet<FaTrash  className="text-[15px]"/>
             </button>
               </div>
             

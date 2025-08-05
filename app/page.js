@@ -27,6 +27,7 @@ export default function Home() {
     getUploadedImages,
     loading,
     getAllNFTsAPI,
+    deleteDocument,
   } = useStateContext();
 
   const [openProfile, setOpenProfile] = useState(false);

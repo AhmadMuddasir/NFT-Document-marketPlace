@@ -7,7 +7,6 @@ import { ethers } from "ethers"; // Correct import for ethers v6.14.4
 import toast from "react-hot-toast";
 import ABI from "../Blockchain/artifacts/contracts/nft_marketplace.sol/DocumentMARKETPLACE.json";
 
-console.log("this is the ABi 0",ABI);
 
 dotenv.config();
 
@@ -120,7 +119,10 @@ export const StateContextProvider =({ children })=>{
       if (signer && address) {
         const provider = signer.provider;
         const balance = await provider.getBalance(address);
+        console.log("balance",balance);
         const formattedBalance = ethers.formatEther(balance);
+                console.log("formattedBalance",formattedBalance);
+
         setUserBalance(formattedBalance);
       }
     } catch (error) {
@@ -312,6 +314,25 @@ const getUploadedImages = async () => {
     }
   };
 
+const deleteDocument = async (id) => {
+  try {
+    await toast.promise(
+      (async () => {
+        const documentTnx = await contract.deleteDocument(id);
+        await documentTnx.wait();
+      })(),
+      {
+        loading: "Deleting document...",
+        success: "Document deleted successfully!",
+        error: "Failed to delete document!",
+      }
+    );
+
+  } catch (error) {
+    console.error("Delete error:", error);
+  }
+};
+
   
 
   return (
@@ -332,6 +353,7 @@ const getUploadedImages = async () => {
         getSingleNFTsAPI,
         loading,
         setLoading,
+        deleteDocument
       }}
     >
       {children}
