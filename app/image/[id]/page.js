@@ -71,7 +71,6 @@ export default function ImageDetail() {
   const purchaseNFT = () => {
     try {
       const id = Number(params.id);
-      console.log("check:", id, "==", nft.price);
       buyDocument(id, nft.price);
     } catch (error) {
       console.log(error);
@@ -91,10 +90,7 @@ export default function ImageDetail() {
     }
   };
 
-  console.log(
-    "nft.creator == address:",
-    nft.creator.toLowerCase() === address.toLowerCase()
-  );
+
 
   const handleDeleteDocument = async () => {
     try {
@@ -102,7 +98,7 @@ export default function ImageDetail() {
         await deleteDocument(nft.imageId);
         await fetchData();
       } else {
-        toast.error("you cannot delete others document");
+        toast.error("You cannot delete others document");
       }
     } catch (error) {
       console.error("Delete error:", error);
