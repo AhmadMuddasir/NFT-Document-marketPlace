@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 //not using currently for development purpose
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+//let us also try custom error
 
 
 pragma solidity ^0.8.10;
@@ -11,8 +12,8 @@ contract DocumentMARKETPLACE is ReentrancyGuard {
     uint256 public constant platformFeePercent = 10;
 
     constructor() {
-    contractOwner = payable(msg.sender);
-}
+        contractOwner = payable(msg.sender);
+    }
 
     struct Documents {
         string title;
@@ -132,7 +133,6 @@ contract DocumentMARKETPLACE is ReentrancyGuard {
         uint fee = (msg.value * platformFeePercent) / 1000;
         uint256 ownerShare = msg.value - fee;
 
-
         address payable previousOwner = payable(documents.owner);
         documents.owner = msg.sender;
 
@@ -143,19 +143,22 @@ contract DocumentMARKETPLACE is ReentrancyGuard {
     }
     // add nonRetrant
     function withdrawFund() external {
-        require(msg.sender == contractOwner,"you are not the owner");
-        (bool success,) = payable(contractOwner).call{value:address(this).balance}("");
-        require(success,"transaction failed");
+        require(msg.sender == contractOwner, "you are not the owner");
+        (bool success, ) = payable(contractOwner).call{
+            value: address(this).balance
+        }("");
+        require(success, "transaction failed");
     }
-    function deleteDocument( uint _id) external  {
-        Documents storage items =  documentsList[_id];
-        require(items.owner == msg.sender,"you cannot delete others document");
-        require(items.owner != address(0), "Document does not exist");
-        (bool success,) = payable(items.owner).call{value:items.price}("");
-        require(success);
-        delete  documentsList[_id];
+    function deleteDocument(uint _id) external {
 
+        Documents storage documents = documentsList[_id];
+        require(documents.owner == msg.sender, "you cannot delete others document");
 
+        // Check authorization first
+
+        // (bool success, ) = payable(documents.owner).call{value: documents.price}("");
+        // require(success,"tnx failed");
+
+        delete documentsList[_id];
     }
-
 }

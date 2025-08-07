@@ -4,12 +4,16 @@ import style from "./Card.module.css";
 import images from "../Image/client/index"
 
 const Card = ({image,index}) => {
+    if (image.imageId === 0) {
+    return null;
+  }
   const date = new Date(image.createdAt * 1000).toString();
 
   return (
     <div className={style.card}>
       <div className={style.content}>
         <a href={`/image/${image.imageId}`}>
+        {console.log("this is from the card",image.imageId)}
         <img
         className={style.image}
         src={image.image} 

@@ -1,11 +1,19 @@
 "use client";
 import { useEffect, useState } from "react";
-import { FaFilePdf, FaLock, FaShoppingCart, FaCheck,FaTrash  } from 'react-icons/fa';
+import {
+  FaFilePdf,
+  FaLock,
+  FaShoppingCart,
+  FaCheck,
+  FaTrash,
+} from "react-icons/fa";
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { Card, Header, Footer, Logo } from "@/Components";
 import { useStateContext } from "@/Context/NFTs";
 import styles from "./ImageDetail.module.css";
+
+
 export default function ImageDetail() {
   const {
     address,
@@ -16,12 +24,14 @@ export default function ImageDetail() {
     buyDocument,
     updateDocumentPrice,
     deleteDocument,
-    userBalance
+    userBalance,
   } = useStateContext();
   const params = useParams();
   const [nft, setNft] = useState(null);
   const [relatedNfts, setRelatedNfts] = useState([]);
   const [newPrice, setNewPrice] = useState("");
+
+  
 
   const fetchData = async () => {
     try {
@@ -44,7 +54,6 @@ export default function ImageDetail() {
   };
 
   useEffect(() => {
-    console.log("use Effect 2");
     if (contract && address) {
       if (params.id) fetchData();
     }
@@ -62,31 +71,48 @@ export default function ImageDetail() {
   const purchaseNFT = () => {
     try {
       const id = Number(params.id);
-      console.log("check:",id,"==", nft.price)
+      console.log("check:", id, "==", nft.price);
       buyDocument(id, nft.price);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handlePriceUpdate = async()=>{
+  const handlePriceUpdate = async () => {
     try {
-      if(newPrice <= 0){
-        toast.message("price should be greater then 0")
-        return;
+      if (nft.creator.toLowerCase() === address.toLowerCase()) {
+        await updateDocumentPrice(newPrice, nft.imageId);
+        fetchData();
+      } else {
+        toast.error("You are not owner");
       }
-         
-         await updateDocumentPrice(newPrice, nft.imageId);
-         fetchData();
-
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
+
+  console.log(
+    "nft.creator == address:",
+    nft.creator.toLowerCase() === address.toLowerCase()
+  );
+
+  const handleDeleteDocument = async () => {
+    try {
+      if (nft.creator.toLowerCase() === address.toLowerCase()) {
+        await deleteDocument(nft.imageId);
+        await fetchData();
+      } else {
+        toast.error("you cannot delete others document");
+      }
+    } catch (error) {
+      console.error("Delete error:", error);
+      toast.error("error");
+    }
+  };
 
   const openPdf = () => {
     if (address == nft.creator) {
-       window.open(nft.pdfURL, '_blank');
+      window.open(nft.pdfURL, "_blank");
     } else {
       toast("You are not the Owner❌", {
         duration: 6000,
@@ -94,12 +120,13 @@ export default function ImageDetail() {
     }
   };
 
-
   return (
     <div className={styles.container}>
       <Header />
-      <h2 className={styles.description}>Account:{address.slice(0.10)}..</h2>
-      <h2 className={styles.description}>UserBalance:{userBalance.slice(0.10)}..</h2>
+      <h2 className={styles.description}>Account:{address.slice(0.1)}..</h2>
+      <h2 className={styles.description}>
+        UserBalance:{userBalance.slice(0.1)}..
+      </h2>
 
       <main className={styles.mainContent}>
         <section className={styles.nftDetail}>
@@ -113,7 +140,6 @@ export default function ImageDetail() {
 
           <div className={styles.details}>
             <h1 className={styles.title}>Title:{nft.title}</h1>
-            <p className={styles.description}>Description: {nft.description}</p>
 
             <div className={styles.metaGrid}>
               <div className={styles.metaItem}>
@@ -136,37 +162,47 @@ export default function ImageDetail() {
                 <h3>Id:{nft.imageId}</h3>
                 {/* <p>{nft.imageId}</p> */}
               </div>
-              </div>
+            </div>
 
-              <div className={styles.buttonStyle}>
-            <button
-              className={styles.purchaseButton}
-              onClick={() => purchaseNFT()}
+            <div className={styles.buttonStyle}>
+              <button
+                className={styles.purchaseButton}
+                onClick={() => purchaseNFT()}
               >
-              Purchase Document<FaShoppingCart className="text-sm"/>
-            </button>
-            <button className={styles.purchaseButton} onClick={() => openPdf()}>
-              Open Document<FaFilePdf className="text-[15px]"/>
-            </button>
-            <button className={styles.purchaseButton} onClick={() =>  deleteDocument(nft.imageId)}>
-              Delete Documet<FaTrash  className="text-[15px]"/>
-            </button>
-              </div>
-            
+                Purchase Document
+                <FaShoppingCart className="text-sm" />
+              </button>
+              <button
+                className={styles.purchaseButton}
+                onClick={() => openPdf()}
+              >
+                Open Document
+                <FaFilePdf className="text-[15px]" />
+              </button>
+              <button
+                className={styles.purchaseButton}
+                onClick={handleDeleteDocument}
+              >
+                Delete Documet
+                <FaTrash className="text-[15px]" />
+              </button>
+            </div>
+            <p className={styles.description}>Description: {nft.description}</p>
           </div>
         </section>
         <div className={styles.updateDocumentPrice}>
           <p>Update Document Price</p>
-          <input type="number"
-          placeholder="new ETH price"
-          value={newPrice}
-          onChange={(e)=>{setNewPrice(e.target.value)}}
-          className={styles.inputDesign}
+          <input
+            type="number"
+            placeholder="new ETH price"
+            value={newPrice}
+            onChange={(e) => {
+              setNewPrice(e.target.value);
+            }}
+            className={styles.inputDesign}
           />
-          <button
-          onClick={handlePriceUpdate}
-          className={styles.purchaseButton}
-          >Update Price
+          <button onClick={handlePriceUpdate} className={styles.purchaseButton}>
+            Update Price
           </button>
         </div>
 

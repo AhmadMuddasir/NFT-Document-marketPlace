@@ -316,20 +316,23 @@ const getUploadedImages = async () => {
 
 const deleteDocument = async (id) => {
   try {
+    
     await toast.promise(
       (async () => {
         const documentTnx = await contract.deleteDocument(id);
         await documentTnx.wait();
+        return true;
       })(),
       {
         loading: "Deleting document...",
         success: "Document deleted successfully!",
-        error: "Failed to delete document!",
+        
       }
     );
-
+     return true;
   } catch (error) {
     console.error("Delete error:", error);
+    toast.error(error.reason);
   }
 };
 
