@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { saveAs } from "file-saver";
+import toast from "react-hot-toast"
 
 //internal import
 
@@ -62,7 +63,7 @@ const Product = ({ image }) => {
           <button
             className={BTNstyle.button}
             onClick={() => (
-              console.log("image url copied"),
+              toast.message("image url copied"),
               navigator.clipboard.writeText(image?.imageURL)
             )}
           >
